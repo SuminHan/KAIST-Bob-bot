@@ -40,6 +40,14 @@ app.post('/', function(req, res, next) {
 	});
 });
 
+app.get('/update', function(req, res, next) {
+	var updateProcess = spawn('python3', ["./update.py"]);
+	updateProcess.stdout.on('data', (data) => {
+		console.log(data);
+		res.send('Update completed');
+	});
+});
+
 app.post('/update', function(req, res, next) {
 	var updateProcess = spawn('python3', ["./update.py"]);
 	updateProcess.stdout.on('data', (data) => {
